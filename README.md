@@ -9,6 +9,7 @@ Choose a topic folder and begin with its README. Follow lessons in order, solve 
 ## Topics
 
 - [Calculus](./calculus/README.md) — limits, derivatives, integrals, applications, differential equations, exam practice, and modelling.
+- [Mathematics for AI and Neural Networks](./ai-neural-networks/README.md) — the mathematics needed to understand and build neural networks, from algebra and vectors to calculus, optimization, backpropagation, and implementation.
 - Algebra — coming soon
 - Geometry — coming soon
 - Trigonometry — coming soon
