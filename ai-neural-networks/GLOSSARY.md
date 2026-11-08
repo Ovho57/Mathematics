@@ -1,0 +1,37 @@
+# AI and Neural Networks Glossary
+
+- **Activation:** output of a neuron after applying an activation function.
+- **Activation function:** function such as ReLU, sigmoid, or tanh applied to a neuron's result.
+- **Algorithm:** step-by-step procedure.
+- **Attention:** mechanism that weights information from different positions.
+- **Backpropagation:** algorithm for calculating gradients through a network.
+- **Batch:** group of examples processed together.
+- **Bias:** learned offset in a neuron or layer.
+- **CNN:** convolutional neural network.
+- **Dataset:** collection of examples.
+- **Deep learning:** machine learning with multi-layer neural networks.
+- **Derivative:** measures rate of change.
+- **Embedding:** vector representation of an item such as a token.
+- **Epoch:** one pass through the training dataset.
+- **Feature:** input variable used by a model.
+- **Forward propagation:** computation from input through the network to output.
+- **Generalization:** performance on unseen examples.
+- **Gradient:** vector of derivatives of a function with respect to parameters.
+- **Gradient descent:** optimization method that updates parameters opposite the gradient.
+- **Hidden layer:** layer between input and output.
+- **Inference:** using a trained model to make predictions.
+- **Label:** target answer for a supervised example.
+- **Learning rate:** scale of an optimization update.
+- **Loss:** numerical measure of model error.
+- **Matrix:** rectangular array of numbers.
+- **Model:** mathematical system that maps inputs to outputs.
+- **Neuron:** unit that computes weighted inputs, bias, and activation.
+- **Parameter:** learned model value, such as weight or bias.
+- **ReLU:** activation function max(0,x).
+- **Softmax:** converts scores into probabilities summing to one.
+- **Tensor:** general multi-dimensional array.
+- **Token:** text unit used by a language model.
+- **Training:** process of learning parameters from data.
+- **Transformer:** architecture using attention and feed-forward layers.
+- **Vector:** ordered list of numbers.
+- **Weight:** learned coefficient controlling an input's contribution.
