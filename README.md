@@ -9,6 +9,7 @@ Choose a topic folder and begin with its README. Follow lessons in order, solve 
 ## Topics
 
 - [Calculus](./calculus/README.md) — limits, derivatives, integrals, applications, differential equations, exam practice, and modelling.
+- [AI Engineering — Machine Learning & Neural Networks](./ai-neural-networks/README.md) — mathematics foundations, machine learning, neural-network layers, forward propagation, backpropagation, CNNs, Transformers, and a Python project.
 - Algebra — coming soon
 - Geometry — coming soon
 - Trigonometry — coming soon
