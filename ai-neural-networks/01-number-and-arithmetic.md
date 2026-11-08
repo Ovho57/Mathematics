@@ -1,530 +1,301 @@
-# Lesson 1 — Numbers and Arithmetic: The Ground Floor of AI Mathematics
+# Lesson 1 — Numbers and arithmetic: the foundation of AI mathematics
 
-> **Goal:** Understand the number operations that appear inside every neural network calculation. No previous AI mathematics is required.
+> **Goal:** Learn the number operations that every neural network uses.
 
-## 1. Why start here?
+## A note about equations
 
-A neural network is built from calculations. It adds numbers, multiplies numbers, compares values, and repeatedly applies formulas.
+This lesson uses plain-text math so it displays clearly on GitHub, mobile screens, and other Markdown viewers.
 
-A neural network may eventually contain millions or billions of parameters, but the basic operations are still arithmetic.
+- `*` means multiply.
+- `/` means divide.
+- `**` means “raised to the power.”
+- `sqrt(x)` means the square root of x.
+- `(-3)` means negative three.
 
-For example, a simple artificial neuron might calculate:
+For example, `2 * 0.5 + 1` means “two times one-half, then add one.”
 
-\[
-z = 2.5(0.4) + 0.8
-\]
+## 1. Why arithmetic matters
 
-This means:
-1. Multiply 2.5 by 0.4.
-2. Add 0.8.
-3. Use the result as the neuron's input to its activation function.
+A neural network is a program that performs calculations. It multiplies input values by weights, adds them together, adds a bias, and then applies a function.
 
-If multiplication and addition are confusing, neural-network equations will be difficult. So we will make those operations clear first.
+Example:
+```text
+z = 2.5 * 0.4 + 0.8
+  = 1.0 + 0.8
+  = 1.8
+```
 
----
+Every operation must be understood because a network performs these calculations many times.
 
-## 2. The main kinds of numbers
+## 2. Types of numbers
 
-### Natural numbers
+- Natural numbers: 1, 2, 3, 4, …
+- Whole numbers: 0, 1, 2, 3, …
+- Integers: …, -2, -1, 0, 1, 2, …
+- Fractions: 1/2, 3/4, 5/8.
+- Decimals: 0.5, 0.75, 0.625.
+- Real numbers: numbers on the number line, including values such as sqrt(2).
 
-Counting numbers:
-
-\[
-1, 2, 3, 4, 5, \ldots
-\]
-
-Depending on convention, some definitions include zero.
-
-### Whole numbers
-
-Non-negative integers:
-
-\[
-0, 1, 2, 3, 4, \ldots
-\]
-
-### Integers
-
-Positive numbers, negative numbers, and zero:
-
-\[
-\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots
-\]
-
-Negative numbers matter in AI. A weight can be negative, and a negative weight means the input can influence the neuron in the opposite direction.
-
-### Fractions
-
-A fraction represents part of a whole:
-
-\[
-\frac{3}{4}
-\]
-
-The top number is the **numerator**. The bottom number is the **denominator**. Here, 3 out of 4 equal parts are represented.
-
-### Decimals
-
-Fractions can be written as decimals:
-
-\[
-\frac{1}{2}=0.5, \qquad \frac{1}{4}=0.25
-\]
-
-AI calculations commonly use decimal numbers.
-
-### Real numbers
-
-Real numbers include integers, fractions, decimals, and irrational values such as \(\sqrt{2}\). Most numbers used in basic neural-network mathematics are treated as real numbers.
-
----
+Neural-network weights can be negative. A negative weight changes the direction of an input's influence.
 
 ## 3. Addition and subtraction
 
-Addition combines quantities:
+Addition combines values:
+```text
+4 + 3 = 7
+```
 
-\[
-4+3=7
-\]
+Subtraction finds a difference:
+```text
+7 - 4 = 3
+4 - 7 = -3
+```
 
-Subtraction measures a difference:
+Adding negative values:
+```text
+5 + (-2) = 3
+-3 + (-4) = -7
+-5 + 8 = 3
+```
 
-\[
-7-4=3
-\]
+Subtracting a negative is adding its opposite:
+```text
+7 - (-3) = 7 + 3 = 10
+```
 
-Subtraction can also produce a negative result:
-
-\[
-4-7=-3
-\]
-
-### Why subtraction matters in AI
-
-Suppose a model predicts 6, but the correct target is 10. The difference is:
-
-\[
-6-10=-4
-\]
-
-This tells us the prediction is 4 below the target. Later, we will study loss functions that measure prediction errors more carefully.
-
-### Adding negative numbers
-
-Think of a number line.
-
-- Adding a positive number moves right.
-- Adding a negative number moves left.
-
-Examples:
-
-\[
-5+(-2)=3
-\]
-
-\[
--3+(-4)=-7
-\]
-
-\[
--5+8=3
-\]
-
-**Rule:** Subtracting a number is the same as adding its opposite.
-
-\[
-7-(-3)=7+3=10
-\]
-
----
+**AI example:** If a model predicts 6 and the correct answer is 10:
+```text
+prediction - target = 6 - 10 = -4
+```
+The prediction is four units below the target.
 
 ## 4. Multiplication
 
-Multiplication is repeated addition when dealing with whole numbers:
+Multiplication scales a value:
+```text
+3 * 4 = 12
+```
 
-\[
-3\times4=4+4+4=12
-\]
-
-Multiplication also scales a number. For example:
-
-\[
-2\times 5=10
-\]
-
-### Signs when multiplying
-
-| Calculation | Result |
-|---|---:|
-| Positive × Positive | Positive |
-| Negative × Positive | Negative |
-| Positive × Negative | Negative |
-| Negative × Negative | Positive |
+Sign rules:
+- positive * positive = positive
+- negative * positive = negative
+- positive * negative = negative
+- negative * negative = positive
 
 Examples:
+```text
+(-3) * 4 = -12
+(-3) * (-4) = 12
+```
 
-\[
-(-3)(4)=-12
-\]
-
-\[
-(-3)(-4)=12
-\]
-
-Why does negative times negative become positive? One way to understand it is through consistency with distributive arithmetic:
-
-\[
-0=(-3)(0)=(-3)(4+(-4))
-\]
-
-\[
-=(-3)(4)+(-3)(-4)
-\]
-
-\[
-= -12 + (-3)(-4)
-\]
-
-For the total to be zero, the second term must be 12.
-
-### AI connection
-
-A neuron multiplies each input by a weight. A negative weight can reverse the contribution of an input.
-
----
+Why is negative times negative positive? Use the distributive rule:
+```text
+0 = (-3) * (4 + (-4))
+  = (-3)*4 + (-3)*(-4)
+  = -12 + (-3)*(-4)
+```
+The second term must equal 12 for the total to be zero.
 
 ## 5. Division
 
-Division splits a quantity into equal parts or asks how many groups fit.
+```text
+12 / 3 = 4
+3 / 4 = 0.75
+```
 
-\[
-12\div3=4
-\]
+Division by zero is undefined. Never divide by zero in ordinary arithmetic.
 
-Division by zero is **undefined**:
+Dividing by a fraction means multiplying by its reciprocal:
+```text
+6 / (2/3) = 6 * (3/2) = 9
+```
 
-\[
-\frac{5}{0}
-\]
+The reciprocal of 2/3 is 3/2.
 
-There is no number that makes this a valid ordinary division.
+## 6. Fractions
 
-### Fractions are division
+Simplify by dividing top and bottom by the same nonzero number:
+```text
+6/8 = 3/4
+```
 
-\[
-\frac{3}{4}=3\div4=0.75
-\]
+Add fractions with the same denominator:
+```text
+2/7 + 3/7 = 5/7
+```
 
-### Dividing by a fraction
+For different denominators, find a common denominator:
+```text
+1/2 + 1/3
+= 3/6 + 2/6
+= 5/6
+```
 
-Dividing by a fraction is equivalent to multiplying by its reciprocal:
-
-\[
-6\div\frac{2}{3}=6\times\frac{3}{2}=9
-\]
-
-The reciprocal of \(\frac{2}{3}\) is \(\frac{3}{2}\).
-
----
-
-## 6. Fractions in detail
-
-### Simplifying a fraction
-
-\[
-\frac{6}{8}=\frac{3}{4}
-\]
-
-We divided both numerator and denominator by 2.
-
-A fraction's value does not change when its numerator and denominator are multiplied or divided by the same nonzero number.
-
-### Adding fractions
-
-If denominators are equal:
-
-\[
-\frac{2}{7}+\frac{3}{7}=\frac{5}{7}
-\]
-
-If denominators differ, find a common denominator:
-
-\[
-\frac{1}{2}+\frac{1}{3}
-=\frac{3}{6}+\frac{2}{6}
-=\frac{5}{6}
-\]
-
-### Multiplying fractions
-
-Multiply numerators and denominators:
-
-\[
-\frac{2}{3}\times\frac{4}{5}
-=\frac{8}{15}
-\]
-
-### AI connection
-
-Neural-network values often appear as decimals such as 0.25 or 0.8. These are simply fractions written in another form.
-
----
+Multiply fractions:
+```text
+2/3 * 4/5 = 8/15
+```
 
 ## 7. Decimals and place value
 
-Each decimal position represents a power of ten:
-
-| Position | Value |
-|---|---|
-| Ones | 1 |
-| Tenths | 0.1 |
-| Hundredths | 0.01 |
-| Thousandths | 0.001 |
-
-For example:
-
-\[
+```text
 2.347 = 2 + 0.3 + 0.04 + 0.007
-\]
+```
 
-### Multiplying decimals
+Multiplying decimals:
+```text
+0.2 * 0.3 = 0.06
+```
 
-First multiply as if there were no decimal points, then place the decimal based on the total decimal places.
+Why? 0.2 = 2/10 and 0.3 = 3/10:
+```text
+(2/10) * (3/10) = 6/100 = 0.06
+```
 
-\[
-0.2\times0.3=0.06
-\]
-
-Since \(0.2=\frac{2}{10}\) and \(0.3=\frac{3}{10}\):
-
-\[
-\frac{2}{10}\times\frac{3}{10}=\frac{6}{100}=0.06
-\]
-
-### AI connection: scaling
-
-Suppose an input value is 250. A preprocessing step might divide it by 100:
-
-\[
-250\div100=2.5
-\]
-
-Changing the scale of data can make learning more stable. Later, we will study normalization and standardization.
-
----
+**AI connection:** Scaling a large value:
+```text
+250 / 100 = 2.5
+```
+Data preprocessing often changes input scales.
 
 ## 8. Order of operations
 
-When an expression contains multiple operations, use this order:
-
+Use:
 1. Parentheses
-2. Exponents and roots
-3. Multiplication and division, from left to right
-4. Addition and subtraction, from left to right
+2. Powers and roots
+3. Multiplication and division (left to right)
+4. Addition and subtraction (left to right)
 
 Example:
+```text
+3 + 2 * 5
+= 3 + 10
+= 13
+```
 
-\[
-3+2\times5
-\]
+Parentheses change the result:
+```text
+(3 + 2) * 5
+= 5 * 5
+= 25
+```
 
-Multiply first:
-
-\[
-3+10=13
-\]
-
-With parentheses:
-
-\[
-(3+2)\times5=5\times5=25
-\]
-
-**Important:** Multiplication does not always come before division, and addition does not always come before subtraction. Operations at the same level are evaluated from left to right.
-
-Example:
-
-\[
-12\div3\times2=4\times2=8
-\]
-
----
+Multiplication and division have equal priority:
+```text
+12 / 3 * 2 = 4 * 2 = 8
+```
 
 ## 9. Powers and roots
 
-A power means repeated multiplication:
-
-\[
-2^3=2\times2\times2=8
-\]
-
-Here:
-- 2 is the base.
-- 3 is the exponent.
-
-Examples:
-
-\[
-5^2=25, \qquad 10^3=1000
-\]
+A power is repeated multiplication:
+```text
+2**3 = 2 * 2 * 2 = 8
+5**2 = 25
+```
 
 A square root reverses squaring:
+```text
+sqrt(25) = 5
+```
 
-\[
-\sqrt{25}=5
-\]
+Negative exponent:
+```text
+2**(-3) = 1/(2**3) = 1/8 = 0.125
+```
+A negative exponent means reciprocal, not automatically a negative answer.
 
-because \(5^2=25\).
-
-### Negative exponents
-
-\[
-2^{-3}=\frac{1}{2^3}=\frac{1}{8}
-\]
-
-A negative exponent means take the reciprocal; it does not automatically mean the result is negative.
-
-### AI connection
-
-Powers appear in squared-error loss:
-
-\[
-(\text{prediction}-\text{target})^2
-\]
-
-They also appear in probability, statistics, and many activation-function formulas.
-
----
+AI uses powers in squared error:
+```text
+(prediction - target)**2
+```
 
 ## 10. Percentages
 
-A percentage means “out of 100.”
+Percent means “per 100”:
+```text
+25% = 25/100 = 0.25
+```
 
-\[
-25\%=\frac{25}{100}=0.25
-\]
+Find 25% of 80:
+```text
+0.25 * 80 = 20
+```
 
-To find 25% of 80:
+## 11. Worked neuron-style calculation
 
-\[
-0.25\times80=20
-\]
+Inputs:
+```text
+x1 = 0.5
+x2 = 0.2
+```
 
-Percentages are useful for understanding accuracy, error rates, and proportions in datasets.
+Weights:
+```text
+w1 = 2
+w2 = -3
+bias = 1
+```
 
----
+Weighted sum plus bias:
+```text
+z = w1*x1 + w2*x2 + bias
+  = 2*0.5 + (-3)*0.2 + 1
+  = 1 - 0.6 + 1
+  = 1.4
+```
 
-## 11. Worked example: calculate a neuron’s weighted sum
-
-A simple neuron receives two inputs:
-
-\[
-x_1=0.5, \qquad x_2=0.2
-\]
-
-Its weights are:
-
-\[
-w_1=2, \qquad w_2=-3
-\]
-
-Its bias is:
-
-\[
-b=1
-\]
-
-The neuron calculates:
-
-\[
-z=w_1x_1+w_2x_2+b
-\]
-
-Substitute the values:
-
-\[
-z=2(0.5)+(-3)(0.2)+1
-\]
-
-Calculate the products:
-
-\[
-z=1-0.6+1
-\]
-
-Finish:
-
-\[
-\boxed{z=1.4}
-\]
-
-This is called a **weighted sum plus bias**. It is one of the most important calculations in neural networks.
-
----
+This is the central calculation of an artificial neuron. Later chapters explain what weights, inputs, and bias mean and how a network learns them.
 
 ## 12. Common mistakes
 
-- Forgetting the negative sign when multiplying.
-- Adding fractions without finding a common denominator.
-- Ignoring the order of operations.
-- Thinking \(2^{-3}\) means \(-2^3\).
+- Forgetting a negative sign.
+- Adding fractions without a common denominator.
+- Ignoring parentheses.
+- Thinking 2**(-3) means -8.
 - Dividing by zero.
-- Confusing a percentage with its decimal form: 5% is 0.05, not 5.
-- Rounding too early in a multi-step calculation.
+- Treating 5% as 5 instead of 0.05.
+- Rounding too early.
 
----
+## 13. Practice
 
-## 13. Practice exercises
+Try these before checking the answers.
 
-Try these without looking at the answers.
-
-### A. Basic arithmetic
-1. \(17-25\)
-2. \((-6)(-4)\)
-3. \((-24)\div6\)
-4. \(7+3\times4\)
-5. \((7+3)\times4\)
-
-### B. Fractions and decimals
-6. Simplify \(\frac{12}{18}\).
-7. Calculate \(\frac{1}{4}+\frac{1}{2}\).
-8. Calculate \(\frac{2}{3}\times\frac{3}{5}\).
-9. Write 0.75 as a fraction in simplest form.
+1. 17 - 25
+2. (-6) * (-4)
+3. (-24) / 6
+4. 7 + 3 * 4
+5. (7 + 3) * 4
+6. Simplify 12/18.
+7. 1/4 + 1/2
+8. 2/3 * 3/5
+9. Write 0.75 as a simplified fraction.
 10. Find 15% of 200.
+11. 3**3
+12. 10**(-2)
+13. sqrt(81)
+14. Calculate z = 3*0.4 + 2*0.1 - 1.
+15. Prediction = 7.5, target = 9. Find prediction - target.
+16. 800 / 100
 
-### C. Powers
-11. Calculate \(3^3\).
-12. Calculate \(10^{-2}\).
-13. Calculate \(\sqrt{81}\).
+### Answers with steps
 
-### D. AI connection
-14. Calculate \(z=3(0.4)+2(0.1)-1\).
-15. A prediction is 7.5 and the target is 9. Calculate prediction minus target.
-16. A data value is 800. Divide it by 100 to scale it.
+1. 17 - 25 = -8
+2. (-6)*(-4) = 24
+3. (-24)/6 = -4
+4. 7 + 3*4 = 7 + 12 = 19
+5. (7+3)*4 = 10*4 = 40
+6. 12/18 = 2/3
+7. 1/4 + 1/2 = 1/4 + 2/4 = 3/4
+8. (2*3)/(3*5) = 6/15 = 2/5
+9. 0.75 = 75/100 = 3/4
+10. 0.15*200 = 30
+11. 3*3*3 = 27
+12. 1/(10*10) = 0.01
+13. 9*9 = 81, so sqrt(81)=9
+14. 1.2 + 0.2 - 1 = 0.4
+15. 7.5 - 9 = -1.5
+16. 800/100 = 8
 
-## Answers
+## Next lesson
 
-1. -8
-2. 24
-3. -4
-4. 19
-5. 40
-6. \(\frac{2}{3}\)
-7. \(\frac{3}{4}\)
-8. \(\frac{2}{5}\)
-9. \(\frac{3}{4}\)
-10. 30
-11. 27
-12. 0.01
-13. 9
-14. \(1.2+0.2-1=0.4\)
-15. \(7.5-9=-1.5\)
-16. 8
-
----
-
-## What comes next?
-
-**Lesson 2 — Variables, expressions, and equations**
-
-You will learn what symbols like \(x\), \(w\), and \(b\) mean, how to simplify expressions, and how to solve equations. These are essential for understanding neural-network formulas.
+**Variables, expressions, and equations.** You will learn how symbols such as x, w, and b work, and how to solve the equations used in neural networks.
